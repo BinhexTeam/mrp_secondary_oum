@@ -1,0 +1,232 @@
+<odoo>
+  <data>
+   <record id="mrp_production_inherit_view_form" model="ir.ui.view">
+    <field name="name">mrp.production.inherit.view.form</field>
+    <field name="model">mrp.production</field>
+    <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+    <field name="arch" type="xml">
+      <xpath expr="//form[1]/sheet[1]/group[1]/group[@name='group_extra_info']/label[1]" position="before">
+    <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='miscellaneous']/group[1]/group[2]/field[@name='date_deadline']" position="move"/>
+  </xpath>
+  <xpath expr="//form[1]/sheet[1]/group[1]/group[@name='group_extra_info']/div[1]/field[@name='date_planned_start']" position="attributes">
+    <attribute name="widget">date</attribute>
+  </xpath>
+  <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='components']/field[@name='move_raw_ids']/tree[1]/field[@name='product_uom']" position="after">
+    <field name="secondary_uom_qty"/>
+    <field name="secondary_uom_id"/>
+  </xpath>
+  <xpath expr="//field[@name='workorder_ids']" position="inside">
+    <form string="Production Workcenter" delete="0" create="0">
+      <field name="is_user_working" invisible="1"/>
+      <field name="working_state" invisible="1"/>
+      <field name="production_state" invisible="1"/>
+      <field name="check_ids" invisible="1"/>
+      <field name="quality_check_fail" invisible="1"/>
+      <header>
+        <field name="state" widget="statusbar" statusbar_visible="pending,ready,progress,done"/>
+      </header>
+      <sheet name="studio_sheet_3e1566">
+        <div class="oe_button_box" name="button_box">
+          <button class="oe_stat_button" name="action_see_move_scrap" type="object" icon="fa-arrows-v" attrs="{'invisible': [('scrap_count', '=', 0)]}">
+            <div class="o_field_widget o_stat_info" name="studio_div_090b28">
+              <span class="o_stat_value">
+                <field name="scrap_count"/>
+              </span>
+              <span class="o_stat_text">Scraps</span>
+            </div>
+          </button>
+        </div>
+        <field name="workcenter_id" invisible="1"/>
+        <field name="company_id" invisible="1"/>
+        <field name="product_tracking" invisible="1"/>
+        <field name="product_id" invisible="1"/>
+        <field name="finished_lot_id" invisible="1"/>
+        <field name="qty_producing" invisible="1"/>
+        <group name="studio_group_6b8062">
+          <group attrs="{'invisible': [('date_planned_start', '=', False)]}" name="studio_group_7683d6">
+            <label for="date_planned_start" string="Planned Date"/>
+            <div class="oe_inline" name="studio_div_9e8062">
+              <field name="date_planned_start" class="mr8 oe_inline" required="True"/>
+              <strong class="mr8 oe_inline">to</strong>
+              <field name="date_planned_finished" class="oe_inline" required="True"/>
+              <field name="show_json_popover" invisible="1"/>
+              <field name="json_popover" widget="mrp_workorder_popover" class="oe_inline mx-2" attrs="{'invisible': [('show_json_popover', '=', False)]}"/>
+            </div>
+            <label for="duration_expected"/>
+            <div class="o_row" name="studio_div_140d3a">
+              <field name="duration_expected" widget="float_time"/>
+              <span>minutes</span>
+            </div>
+          </group>
+        </group>
+        <notebook name="studio_notebook_77c5c7">
+          <page string="Time Tracking" name="time_tracking" groups="mrp.group_mrp_manager">
+            <group name="studio_group_9afa43">
+              <field name="time_ids" nolabel="1" context="{'default_workcenter_id': workcenter_id, 'default_workorder_id': id}">
+                <tree editable="bottom">
+                  <field name="date_start"/>
+                  <field name="date_end"/>
+                  <field name="duration" widget="float_time" sum="Total duration"/>
+                  <field name="user_id"/>
+                  <field name="workcenter_id" invisible="1"/>
+                  <field name="company_id" invisible="1"/>
+                  <field name="loss_id" string="Productivity" optional="hide"/>
+                </tree>
+                <form>
+                  <group name="studio_group_f58968">
+                    <group name="studio_group_15fd92">
+                      <field name="date_start"/>
+                      <field name="date_end"/>
+                      <field name="duration" widget="float_time"/>
+                      <field name="company_id" invisible="1"/>
+                    </group>
+                    <group name="studio_group_ce0c87">
+                      <field name="user_id"/>
+                      <field name="workcenter_id"/>
+                      <field name="company_id" invisible="1"/>
+                      <field name="loss_id"/>
+                    </group>
+                  </group>
+                </form>
+              </field>
+            </group>
+          </page>
+          <page string="Finished Steps" name="finished_steps" attrs="{'invisible': [('check_ids', '=', [])]}">
+            <field name="check_ids" domain="[('quality_state', '!=', 'none')]" readonly="1">
+              <tree>
+                <field name="quality_state" invisible="1"/>
+                <field name="test_type" invisible="1"/>
+                <field name="control_date" string="Date"/>
+                <field name="user_id" string="Operator"/>
+                <field name="finished_lot_id" string="Finished Lot/Serial Number" attrs="{'column_invisible': [('parent.product_tracking', '=', 'none')]}"/>
+                <field name="title"/>
+                <field name="result"/>
+              </tree>
+            </field>
+          </page>
+          <page string="Work Instruction" name="workorder_page_work_instruction" attrs="{'invisible': [('worksheet', '=', False), ('worksheet_google_slide', '=', False), ('operation_note', '=', False)]}">
+            <field name="worksheet_type" invisible="1"/>
+            <field name="worksheet" widget="pdf_viewer" attrs="{'invisible': [('worksheet_type', '!=', 'pdf')]}"/>
+            <field name="worksheet_google_slide" widget="embed_viewer" attrs="{'invisible': [('worksheet_type', '!=', 'google_slide')]}"/>
+            <field name="operation_note" attrs="{'invisible': [('worksheet_type', '!=', 'text')]}"/>
+          </page>
+        </notebook>
+      </sheet>
+    </form>
+    <tree editable="bottom" js_class="tablet_list_view">
+      <field name="consumption" invisible="1"/>
+      <field name="company_id" invisible="1"/>
+      <field name="is_produced" invisible="1"/>
+      <field name="is_user_working" invisible="1"/>
+      <field name="name" invisible="1"/>
+      <field name="product_uom_id" invisible="1" readonly="0"/>
+      <field name="production_state" invisible="1"/>
+      <field name="production_bom_id" invisible="1"/>
+      <field name="qty_producing" invisible="1"/>
+      <field name="time_ids" invisible="1"/>
+      <field name="working_state" invisible="1"/>
+      <field name="operation_id" invisible="1" domain="['|', ('bom_id', '=', production_bom_id), ('bom_id', '=', False)]" context="{'default_workcenter_id': workcenter_id, 'default_company_id': company_id}"/>
+      <field name="name" string="Operation"/>
+      <field name="workcenter_id"/>
+      <field name="x_studio_fecha" string="Fecha Inicio"/>
+      <field name="x_studio_fecha_fin_1" string="Fecha Fin"/>
+      <field name="x_studio_operarios" string="Operario/s"/>
+      <field name="date_planned_start" optional="show" attrs="{&quot;readonly&quot;: [[&quot;state&quot;,&quot;in&quot;,[&quot;done&quot;,&quot;cancel&quot;]]]}" invisible="1"/>
+      <field name="date_planned_finished" optional="hide"/>
+      <field name="date_start" optional="hide" readonly="1"/>
+      <field name="date_finished" optional="hide" readonly="1"/>
+      <field name="duration_expected" widget="float_time" attrs="{&quot;readonly&quot;: [[&quot;state&quot;,&quot;in&quot;,[&quot;done&quot;,&quot;cancel&quot;]]]}" invisible="1"/>
+      <field name="duration" widget="mrp_time_counter" attrs="{'invisible': [('production_state','=', 'draft')], 'readonly': [('is_user_working', '=', True)]}"/>
+      <field name="state" widget="badge" decoration-success="state == 'done'" decoration-info="state not in ('done', 'cancel')" attrs="{'invisible': [('production_state', 'in', ('draft', 'done'))]}"/>
+      <field name="production_state" invisible="1"/>
+      <button name="button_start" type="object" string="Start" class="btn-success" attrs="{'invisible': ['|', '|', '|', ('production_state','in', ('draft', 'done')), ('working_state', '=', 'blocked'), ('state', '=', 'done'), ('is_user_working', '!=', False)]}"/>
+      <button name="button_pending" type="object" string="Pause" class="btn-warning" attrs="{'invisible': ['|', '|', ('production_state', 'in', ('draft', 'done')), ('working_state', '=', 'blocked'), ('is_user_working', '=', False)]}"/>
+      <button name="button_finish" type="object" string="Done" class="btn-success" attrs="{'invisible': ['|', '|', ('production_state', 'in', ('draft', 'done')), ('working_state', '=', 'blocked'), ('is_user_working', '=', False)]}"/>
+      <button name="435" type="action" string="Block" context="{'default_workcenter_id': workcenter_id}" class="btn-danger" attrs="{'invisible': ['|', ('production_state', 'in', ('draft', 'done')), ('working_state', '=', 'blocked')]}"/>
+      <button name="button_unblock" type="object" string="Unblock" context="{'default_workcenter_id': workcenter_id}" class="btn-danger" attrs="{'invisible': ['|', ('production_state', 'in', ('draft', 'done')), ('working_state', '!=', 'blocked')]}"/>
+      <button name="action_open_wizard" type="object" icon="fa-external-link" class="oe_edit_only" context="{'default_workcenter_id': workcenter_id}"/>
+      <button name="open_tablet_view" type="object" icon="fa-tablet" context="{'from_production_order': True}" attrs="{'invisible': ['|', ('production_state', 'in', ('draft', 'cancel', 'done')), ('state', '=', 'done')]}"/>
+      <field name="show_json_popover" invisible="1"/>
+      <field name="json_popover" widget="mrp_workorder_popover" string=" " width="0.1" attrs="{'invisible': [('show_json_popover', '=', False)]}"/>
+    </tree>
+  </xpath>
+  <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='miscellaneous']/group[1]/group[2]/field[@name='origin']" position="after">
+    <field name="x_studio_cantidad" string="Cantidad" help="Indicar cantidad por etiqueta"/>
+    <field name="x_studio_observaciones" string="Observaciones"/>
+    <field name="x_studio_n_de_lote_1" string="Nº de Lote"/>
+  </xpath>
+  <xpath expr="//form[1]/sheet[1]/group[1]/group[@name='group_extra_info']/field[@name='date_deadline']" position="attributes">
+    <attribute name="attrs">{"invisible": ["|",["state","in",["done","cancel"]],["date_deadline","=",False]], "readonly": [["state","!=","confirmed"]]}</attribute>
+    <attribute name="widget">date</attribute>
+  </xpath>
+  <xpath expr="//field[@name='move_raw_ids']" position="inside">
+    <form string="Stock Moves" create="0" edit="0">
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,assigned,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                    
+                    <button name="action_get_account_moves" icon="fa-usd" class="oe_stat_button" string="Accounting Entries" type="object" groups="account.group_account_readonly"/>
+                </div>
+                    <group>
+                        <group name="main_grp" colspan="2">
+                            <group name="main_grp_col1">
+                                <field name="reference"/>
+                                <field name="location_id" options="{'no_create': True}"/>
+                                <field name="location_dest_id" options="{'no_create': True}"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                            </group>
+                            <group name="main_grp_col2">
+                                <field name="product_id"/>
+                                <field name="product_uom_category_id" invisible="1"/>
+                                <label for="product_uom_qty"/>
+                                <div class="o_row">
+                                    <field name="product_uom_qty"/>
+                                    <field name="product_uom" options="{'no_open': True, 'no_create': True}" groups="uom.group_uom"/>
+                                </div>
+                                <field name="name" invisible="1"/>
+                                <div class="o_td_label">
+                                    <label for="date" string="Date Scheduled" attrs="{'invisible': [('state', '=', 'done')]}"/>
+                                    <label for="date" string="Date Processing" attrs="{'invisible': [('state', '!=', 'done')]}"/>
+                                </div>
+                                <field name="date" readonly="1" nolabel="1"/>
+                                <field name="date_deadline" force_save="1"/>
+                            </group>
+                        </group>
+                        <group name="origin_grp" string="Origin" groups="base.group_no_one">
+                            <field name="origin"/>
+                            <field name="group_id"/>
+                            <field name="procure_method" attrs="{'readonly': [('state', '!=', 'draft')]}" groups="stock.group_adv_location"/>
+                        
+                    <field name="purchase_line_id"/>
+                </group>
+                        <group name="linked_group" string="Linked Moves" groups="base.group_no_one" colspan="2">
+                            <field name="move_orig_ids" string="Origin Moves" readonly="1">
+                                <tree>
+                                    <field name="location_id"/>
+                                    <field name="location_dest_id"/>
+                                    <field name="product_uom_qty"/>
+                                    <field name="product_uom"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                            <field name="move_dest_ids" string="Destination Moves" readonly="1">
+                                <tree>
+                                    <field name="location_id"/>
+                                    <field name="location_dest_id"/>
+                                    <field name="product_uom_qty"/>
+                                    <field name="product_uom"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </group>
+                </sheet>
+                </form>
+  </xpath>
+      
+    </field>
+   </record>
+  </data>
+</odoo>
