@@ -1,0 +1,188 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* espuma_custom
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0+e-20230712\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-24 12:14+0000\n"
+"PO-Revision-Date: 2024-01-24 12:19+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. module: espuma_custom
+#: model_terms:ir.ui.view,arch_db:espuma_custom.mrp_production_inherit_view_form
+msgid "<span class=\"o_stat_text\">Scraps</span>"
+msgstr "<span class=\"o_stat_text\">Desechos</span>"
+
+#. module: espuma_custom
+#: model_terms:ir.ui.view,arch_db:espuma_custom.mrp_production_inherit_view_form
+msgid "<span>minutes</span>"
+msgstr "<span>minutos</span>"
+
+#. module: espuma_custom
+#: model_terms:ir.ui.view,arch_db:espuma_custom.mrp_production_inherit_view_form
+msgid "<strong class=\"mr8 oe_inline\">to</strong>"
+msgstr "<strong class=\"mr8 oe_inline\">a</strong>"
+
+#. module: espuma_custom
+#: model_terms:ir.ui.view,arch_db:espuma_custom.mrp_production_inherit_view_form
+msgid "Accounting Entries"
+msgstr "Asientos contables"
+
+#. module: espuma_custom
+#: model_terms:ir.ui.view,arch_db:espuma_custom.mrp_production_inherit_view_form
+msgid "Block"
+msgstr "Bloque"
+
+#. module: espuma_custom
+#: model_terms:ir.ui.view,arch_db:espuma_custom.mrp_production_inherit_view_form
+msgid "Cantidad"
+msgstr "Cantidad"
+
+#. module: espuma_custom
+#: model_terms:ir.ui.view,arch_db:espuma_custom.mrp_production_inherit_view_form
+msgid "Date"
+msgstr "Fecha"
+
+#. module: espuma_custom
+#: model_terms:ir.ui.view,arch_db:espuma_custom.mrp_production_inherit_view_form
+msgid "Date Processing"
+msgstr "Procesamiento de fechas"
+
+#. module: espuma_custom
+#: model_terms:ir.ui.view,arch_db:espuma_custom.mrp_production_inherit_view_form
+msgid "Date Scheduled"
+msgstr "Fecha programada"
+
+#. module: espuma_custom
+#: model_terms:ir.ui.view,arch_db:espuma_custom.mrp_production_inherit_view_form
+msgid "Destination Moves"
+msgstr "Movimientos de destino"
+
+#. module: espuma_custom
+#: model_terms:ir.ui.view,arch_db:espuma_custom.mrp_production_inherit_view_form
+msgid "Done"
+msgstr "Hecho"
+
+#. module: espuma_custom
+#: model_terms:ir.ui.view,arch_db:espuma_custom.mrp_production_inherit_view_form
+msgid "Fecha Fin"
+msgstr "Fecha Fin"
+
+#. module: espuma_custom
+#: model_terms:ir.ui.view,arch_db:espuma_custom.mrp_production_inherit_view_form
+msgid "Fecha Inicio"
+msgstr "Fecha Inicio"
+
+#. module: espuma_custom
+#: model_terms:ir.ui.view,arch_db:espuma_custom.mrp_production_inherit_view_form
+msgid "Finished Lot/Serial Number"
+msgstr "Lote terminado/Número de serie"
+
+#. module: espuma_custom
+#: model_terms:ir.ui.view,arch_db:espuma_custom.mrp_production_inherit_view_form
+msgid "Finished Steps"
+msgstr "Pasos terminados"
+
+#. module: espuma_custom
+#: model_terms:ir.ui.view,arch_db:espuma_custom.mrp_production_inherit_view_form
+msgid "Indicar cantidad por etiqueta"
+msgstr "Indicar cantidad por etiqueta"
+
+#. module: espuma_custom
+#: model_terms:ir.ui.view,arch_db:espuma_custom.mrp_production_inherit_view_form
+msgid "Linked Moves"
+msgstr "Movimientos vinculados"
+
+#. module: espuma_custom
+#: model_terms:ir.ui.view,arch_db:espuma_custom.mrp_production_inherit_view_form
+msgid "Nº de Lote"
+msgstr "Nº de Lote"
+
+#. module: espuma_custom
+#: model_terms:ir.ui.view,arch_db:espuma_custom.mrp_production_inherit_view_form
+msgid "Observaciones"
+msgstr "Observaciones"
+
+#. module: espuma_custom
+#: model_terms:ir.ui.view,arch_db:espuma_custom.mrp_production_inherit_view_form
+msgid "Operario/s"
+msgstr "Operario/s"
+
+#. module: espuma_custom
+#: model_terms:ir.ui.view,arch_db:espuma_custom.mrp_production_inherit_view_form
+msgid "Operation"
+msgstr "Operación"
+
+#. module: espuma_custom
+#: model_terms:ir.ui.view,arch_db:espuma_custom.mrp_production_inherit_view_form
+msgid "Operator"
+msgstr "Operador"
+
+#. module: espuma_custom
+#: model_terms:ir.ui.view,arch_db:espuma_custom.mrp_production_inherit_view_form
+msgid "Origin"
+msgstr "Origen"
+
+#. module: espuma_custom
+#: model_terms:ir.ui.view,arch_db:espuma_custom.mrp_production_inherit_view_form
+msgid "Origin Moves"
+msgstr "Movimientos origen"
+
+#. module: espuma_custom
+#: model_terms:ir.ui.view,arch_db:espuma_custom.mrp_production_inherit_view_form
+msgid "Pause"
+msgstr "Pausa"
+
+#. module: espuma_custom
+#: model_terms:ir.ui.view,arch_db:espuma_custom.mrp_production_inherit_view_form
+msgid "Planned Date"
+msgstr "Cita planeada"
+
+#. module: espuma_custom
+#: model_terms:ir.ui.view,arch_db:espuma_custom.mrp_production_inherit_view_form
+msgid "Production Workcenter"
+msgstr "Centro de trabajo de producción"
+
+#. module: espuma_custom
+#: model_terms:ir.ui.view,arch_db:espuma_custom.mrp_production_inherit_view_form
+msgid "Productivity"
+msgstr "Productividad"
+
+#. module: espuma_custom
+#: model_terms:ir.ui.view,arch_db:espuma_custom.mrp_production_inherit_view_form
+msgid "Start"
+msgstr "Comenzar"
+
+#. module: espuma_custom
+#: model_terms:ir.ui.view,arch_db:espuma_custom.mrp_production_inherit_view_form
+msgid "Stock Moves"
+msgstr "Movimientos de acciones"
+
+#. module: espuma_custom
+#: model_terms:ir.ui.view,arch_db:espuma_custom.mrp_production_inherit_view_form
+msgid "Time Tracking"
+msgstr "Seguimiento del tiempo"
+
+#. module: espuma_custom
+#: model_terms:ir.ui.view,arch_db:espuma_custom.mrp_production_inherit_view_form
+msgid "Total duration"
+msgstr "Duración total"
+
+#. module: espuma_custom
+#: model_terms:ir.ui.view,arch_db:espuma_custom.mrp_production_inherit_view_form
+msgid "Unblock"
+msgstr "Desatascar"
+
+#. module: espuma_custom
+#: model_terms:ir.ui.view,arch_db:espuma_custom.mrp_production_inherit_view_form
+msgid "Work Instruction"
+msgstr "Instrucción de trabajo"
