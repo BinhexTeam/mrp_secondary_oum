@@ -9,8 +9,9 @@
             </xpath>
             <xpath expr="//field[@name='move_raw_ids']/tree/button[@name='action_show_details']" position="replace"/>
             <xpath expr="//field[@name='move_raw_ids']/tree/field[@name='product_uom']" position="after">
-                <field name="secondary_uom_qty"/>
-                <field name="secondary_uom_id"/>
+                <field name="product_tmpl_id" invisible="1"/>
+                <field name="custom_secondary_uom_qty" widget="decimal" readonly="1"/>
+                <field name="custom_secondary_uom_id"  domain="[('product_tmpl_id', '=', product_tmpl_id)]"/>
             </xpath>
             <xpath expr="//header//field[@name='show_lock']" position="after">
                 <button name="action_refresh_secondary_unit_in_moves" type="object" class="btn btn-primary" string="Secondary unit" icon="fa-refresh"/>
