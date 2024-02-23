@@ -1,0 +1,20 @@
+<odoo>
+    <record id="mrp_production_form_view_inherited" model="ir.ui.view">
+        <field name="name">mrp.production.view.inherited</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='move_raw_ids']/tree/field[@name='quantity_done']" position="attributes">
+                <attribute name="attrs">{'column_invisible': [('parent.state', '=', 'draft')]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='move_raw_ids']/tree/button[@name='action_show_details']" position="replace"/>
+            <xpath expr="//field[@name='move_raw_ids']/tree/field[@name='product_uom']" position="after">
+                <field name="secondary_uom_qty"/>
+                <field name="secondary_uom_id"/>
+            </xpath>
+            <xpath expr="//header//field[@name='show_lock']" position="after">
+                <button name="action_refresh_secondary_unit_in_moves" type="object" class="btn btn-primary" string="Secondary unit" icon="fa-refresh"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
